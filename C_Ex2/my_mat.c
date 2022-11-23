@@ -1,14 +1,11 @@
 #include <stdio.h>
 #include "my_mat.h"
 
-#define ROW 10
-#define COL 10
-#define NUM_OF_VER 10
-#define INF 2147483647
+//
+enum{ ROW = 10 , COL=10 ,NUM_OF_VER=10};
 int mat[ROW][COL];
 
 void floydWarshallAlgorithm(int arr[][COL]) ;
-
 
 /* A method that receives from the user the matrix values */
 
@@ -18,7 +15,7 @@ void init_Mat() {
             scanf("%d" ,&mat[i][j]);
         }
     }
-    floydWarshallAlgorithm(mat);
+   floydWarshallAlgorithm(mat);
 }
 
 /* A method that receives the two indexes of the matrix (i and j) from the user
@@ -27,7 +24,7 @@ void init_Mat() {
 void isPath() {
     int vertex_1 ,vertex_2;
     scanf("%d %d",&vertex_1,&vertex_2);
-    mat[vertex_1][vertex_2] != 0 ? printf("True") : printf("False");
+    mat[vertex_1][vertex_2] ? printf("True") : printf("False");
 }
 
 /* A method that returns the minimum value between two numbers */
@@ -43,11 +40,12 @@ void floydWarshallAlgorithm(int arr[][COL]) {
     for (int k = 0; k < NUM_OF_VER; k++) {
         for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COL; j++) {
-                if((arr[i][k] == INF) || (arr[k][j] == INF)){
-                    continue;
+                if (mat[i][j] != 0 && mat[i][k] != 0 && mat[k][j] != 0) {
+                    mat[i][j] = min(mat[i][j], mat[i][k] + mat[k][j]);
                 }
-                if (min(arr[i][k] + arr[k][j], arr[i][j]) == arr[i][k] + arr[k][j])
-                    arr[i][j] = arr[i][k] + arr[k][j];
+                if (i != j && mat[i][j] == 0 && mat[i][k] != 0 && mat[k][j] != 0) {
+                    mat[i][j] = mat[i][k] + mat[k][j];
+                }
             }
         }
     }
@@ -57,9 +55,8 @@ void floydWarshallAlgorithm(int arr[][COL]) {
  * and prints the shortest path from the cells in indexes i and j
  * if the path does not exist the program will print -1 */
 
-void shortestPath() {
-    int vertex_1 ,vertex_2;
-    scanf("%d %d",&vertex_1,&vertex_2);
-    mat[vertex_1][vertex_2] ? printf("%d",mat[vertex_1][vertex_2]) : printf("-1");
-}
-
+    void shortestPath() {
+        int vertex_1, vertex_2;
+        scanf("%d %d", &vertex_1, &vertex_2);
+        mat[vertex_1][vertex_2] ? printf("%d", mat[vertex_1][vertex_2]) : printf("-1");
+    }

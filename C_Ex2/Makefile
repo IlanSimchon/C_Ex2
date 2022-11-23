@@ -1,5 +1,3 @@
-.PHONY:clean all
-
 AR = ar -rcs
 CC = gcc
 CFLAGS = -g -Wall
@@ -14,6 +12,8 @@ my_mat.a: my_mat.o
 connections: my_mat.a main.o
 	$(CC) $(FLAGS) my_mat.a main.o -o connections -lm
 all:connections
+
+.PHONY: clean all
 
 clean:
 	rm -f *.o *.a connections
