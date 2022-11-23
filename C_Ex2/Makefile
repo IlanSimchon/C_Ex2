@@ -1,8 +1,8 @@
 .PHONY:clean all
 
-AR = AR-rcs
+AR = ar -rcs
 CC = gcc
-CFLAGS = -g-Wall
+CFLAGS = -g -Wall
 
 my_mat.o: my_mat.c my_mat.h
 	$(CC) $(CFLAGS) -c my_mat.c
