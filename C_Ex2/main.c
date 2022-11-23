@@ -11,12 +11,11 @@ int main() {
         int v1,v2 ;
         switch (choice) {
             case 'A': {
-                init_Mat(mat);
+                init_Mat();
                 break;
             }
             case 'B': {
-                scanf("%d %d",&v1,&v2);
-                isPath(mat,v1,v2);
+                isPath();
                 break;
             }
             case 'C': {
