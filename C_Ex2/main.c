@@ -6,7 +6,7 @@
 int main() {
     char choice;
     int mat[ROW][COL];
-    scanf("%d" ,&choice);
+    scanf("%c" ,&choice);
     do {
         int v1,v2 ;
         switch (choice) {
@@ -20,11 +20,11 @@ int main() {
             }
             case 'C': {
                 scanf("%d %d",&v1,&v2);
-                shortestPath(mat,v1,v2);
+                shortestPath();
                 break;
             }
             default:
-                scanf("%d" ,&choice);
+                scanf("%c" , &choice);
         }
     }
     while (choice != 'D');

@@ -4,10 +4,10 @@
 #define ROW 10
 #define COL 10
 #define NUM_OF_VER 10
-
+#define INF 2147483647
 int mat[ROW][COL];
-int floydWarshallAlgorithm(int arr[10][10]);
-int min(int a,int b);
+
+void floydWarshallAlgorithm(int arr[][COL]) ;
 
 
 /* A method that receives from the user the matrix values */
@@ -18,6 +18,7 @@ void init_Mat() {
             scanf("%d" ,&mat[i][j]);
         }
     }
+    floydWarshallAlgorithm(mat);
 }
 
 /* A method that receives the two indexes of the matrix (i and j) from the user
@@ -26,7 +27,7 @@ void init_Mat() {
 void isPath() {
     int vertex_1 ,vertex_2;
     scanf("%d %d",&vertex_1,&vertex_2);
-    floydWarshallAlgorithm(mat[vertex_1][vertex_2]) ? printf("True") : printf("False");
+    mat[vertex_1][vertex_2] != 0 ? printf("True") : printf("False");
 }
 
 /* A method that returns the minimum value between two numbers */
@@ -38,24 +39,19 @@ int min(int a,int b){
 /* Using floyd-Warshall Algorithm to find the shortest path
  * between every pair of vertices in a given Graph. */
 
-int floydWarshallAlgorithm(int arr[10][10]){
-    static int mat_copy[ROW][COL];
-    for (int i = 0; i < ROW; i++) {
-        for (int j = 0; j <COL; j++) {
-            mat_copy[i][j] = mat[i][j];
-        }
-    }
-    for (int k = 0; k < NUM_OF_VER ; k++) {
+void floydWarshallAlgorithm(int arr[][COL]) {
+    for (int k = 0; k < NUM_OF_VER; k++) {
         for (int i = 0; i < ROW; i++) {
             for (int j = 0; j < COL; j++) {
-                if (min(mat_copy[i][k] + mat_copy[k][j] , mat_copy[i][j]) == mat_copy[i][k] + mat_copy[k][j])
-                    mat_copy[i][j] = mat_copy[i][k] + mat_copy[k][j];
+                if((arr[i][k] == INF) || (arr[k][j] == INF)){
+                    continue;
+                }
+                if (min(arr[i][k] + arr[k][j], arr[i][j]) == arr[i][k] + arr[k][j])
+                    arr[i][j] = arr[i][k] + arr[k][j];
             }
         }
     }
-    return mat_copy[ROW][COL];
 }
-
 
 /* A method that receives the two indexes of the matrix (i and j) from the user
  * and prints the shortest path from the cells in indexes i and j
@@ -64,6 +60,6 @@ int floydWarshallAlgorithm(int arr[10][10]){
 void shortestPath() {
     int vertex_1 ,vertex_2;
     scanf("%d %d",&vertex_1,&vertex_2);
-    floydWarshallAlgorithm(mat[vertex_1][vertex_2]) ? printf("%d",mat[vertex_1][vertex_2]) : printf("-1");
+    mat[vertex_1][vertex_2] ? printf("%d",mat[vertex_1][vertex_2]) : printf("-1");
 }
 
