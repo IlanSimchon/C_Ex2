@@ -24,7 +24,7 @@ void init_Mat() {
 void isPath() {
     int vertex_1 ,vertex_2;
     scanf("%d %d",&vertex_1,&vertex_2);
-    mat[vertex_1][vertex_2] ? printf("True") : printf("False");
+    mat[vertex_1][vertex_2] ? printf("True\n") : printf("False\n");
 }
 
 /* A method that returns the minimum value between two numbers */
@@ -58,5 +58,5 @@ void floydWarshallAlgorithm(int arr[][COL]) {
     void shortestPath() {
         int vertex_1, vertex_2;
         scanf("%d %d", &vertex_1, &vertex_2);
-        mat[vertex_1][vertex_2] ? printf("%d", mat[vertex_1][vertex_2]) : printf("-1");
+        mat[vertex_1][vertex_2] ? printf("%d\n", mat[vertex_1][vertex_2]) : printf("-1\n");
     }
