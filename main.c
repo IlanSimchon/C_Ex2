@@ -2,7 +2,6 @@
 #include "my_mat.h"
 #define ROW 10
 #define COL 10
-int mat[ROW][COL];
 
 int main() {
     char choice;
